@@ -1,0 +1,32 @@
+$header-bg-color: #fff; // Assuming a white background
+$font-color: #000; // Black color for text
+$accent-color: #f00; // Red color for the slash
+
+.header {
+  background-color: $header-bg-color;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+
+    .logo-text {
+      font-size: 24px; // Adjust size as needed
+      color: $font-color;
+      font-weight: bold;
+      font-family: "Segoe UI", serif;
+      letter-spacing: 2px;
+    }
+
+    .logo-slash {
+      color: $accent-color;
+      font-weight: bold;
+      font-family: "Segoe UI", serif;
+      font-size: 24px; // Adjust size as needed
+      padding-right: 2px;
+    }
+  }
+}

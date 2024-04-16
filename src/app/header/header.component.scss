@@ -1,0 +1,13 @@
+.header {
+  display: grid;
+  grid-template-columns: 15% 15% 15% 50%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+}
+
+.login {
+  display: flex;
+  justify-content: flex-end;
+}
