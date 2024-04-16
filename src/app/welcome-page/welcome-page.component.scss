@@ -15,25 +15,20 @@ img {
 }
 
 .welcome-page-side {
-  display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 75px;
 }
 
 .upload-button {
   display: flex;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding-top: 30px;
-  padding-left: 75px;
 }
 
 .header-main-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-right: 75px;
-  padding-left: 75px;
   padding-top: 30px;
   color: rgba(133,224,163,255);
   font-weight: bold;
@@ -41,12 +36,9 @@ img {
 }
 
 .sub-header-main-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-right: 75px;
-  padding-left: 75px;
   padding-top: 5px;
+  text-align: start;
   color: black;
   font-size: 20px;
 }

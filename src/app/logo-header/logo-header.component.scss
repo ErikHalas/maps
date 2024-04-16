@@ -6,8 +6,8 @@ $accent-color: #f00; // Red color for the slash
   background-color: $header-bg-color;
   padding: 10px 20px 10px 0;
   display: flex;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   .logo-container {
     display: flex;
