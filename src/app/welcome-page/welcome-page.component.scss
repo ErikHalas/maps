@@ -1,0 +1,52 @@
+
+
+
+img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.main-page-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background: rgb(195,195,195);
+  background: linear-gradient(180deg, rgba(235,235,235,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.welcome-page-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-button {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  padding-top: 30px;
+  padding-left: 75px;
+}
+
+.header-main-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 75px;
+  padding-left: 75px;
+  padding-top: 30px;
+  color: rgba(133,224,163,255);
+  font-weight: bold;
+  font-size: 70px;
+}
+
+.sub-header-main-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 75px;
+  padding-left: 75px;
+  padding-top: 5px;
+  color: black;
+  font-size: 20px;
+}
