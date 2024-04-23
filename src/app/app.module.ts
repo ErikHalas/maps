@@ -11,6 +11,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { GenericButtonComponent } from './generic-button/generic-button.component';
 import {HttpClientModule} from "@angular/common/http";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

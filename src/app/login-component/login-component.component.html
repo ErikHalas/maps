@@ -1,8 +1,22 @@
 <div class="header">
   <div class="user-profile">
-    <a>
+    <a [matMenuTriggerFor]="menu">
       <img src="./assets/placeholderUser.jpg" alt="Profile Picture" class="profile-picture">
     </a>
+    <mat-menu #menu="matMenu">
+      <button *ngIf="!this.isUserLoggedIn" (click)="login()" mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Login</span>
+      </button>
+      <button *ngIf="!this.isUserLoggedIn" (click)="register()" mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Register</span>
+      </button>
+      <button *ngIf="this.isUserLoggedIn" (click)="logout()" mat-menu-item>
+        <mat-icon>voicemail</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
     <a>
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="notifications"></mat-icon>
     </a>
