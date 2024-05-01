@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {HttpClient, HttpEventType} from "@angular/common/http";
-import {finalize, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
+import {UploadScanService} from "./upload-scan.service";
 
 @Component({
   selector: 'app-upload-scan',
@@ -17,31 +17,15 @@ export class UploadScanComponent {
   uploadProgress: number | null | undefined;
   uploadSub: Subscription | null | undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(private fileUploadService: UploadScanService) { }
 
   onFileSelected(event: any) {
-    const file:File = event.target.files[0];
-
-    if (file) {
-      this.fileName = file.name;
-      const formData = new FormData();
-      formData.append("dicom", file);
-      formData.append("name", file.name);
-
-      const upload$ = this.http.post("http://localhost:5000/upload_scan", formData, {
-        reportProgress: true,
-        observe: 'events'
-      })
-          .pipe(
-              finalize(() => this.reset())
-          );
-
-      this.uploadSub = upload$.subscribe((event: any) => {
-        if (event.type == HttpEventType.UploadProgress) {
-          this.uploadProgress = Math.round(100 * (event.loaded / event.total));
-        }
-      })
-    }
+    const file: File = event.target.files[0];
+    this.fileUploadService.uploadScan(file).subscribe(response => {
+      console.log('File uploaded successfully', response);
+    }, error => {
+      console.error('Error uploading file', error);
+    });
   }
 
   cancelUpload() {
