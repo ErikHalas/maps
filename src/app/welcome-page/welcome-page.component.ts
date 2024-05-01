@@ -11,7 +11,7 @@ export class WelcomePageComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get('http://localhost:5000/').subscribe({
+    this.http.get('http://127.0.0.1:5000/').subscribe({
       next: (data: any) => {
         console.log('Data received:', data)
       },
