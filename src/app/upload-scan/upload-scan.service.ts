@@ -12,6 +12,6 @@ export class UploadScanService {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post('http://127.0.0.1:5000/upload_scan', formData);
+    return this.http.post('http://localhost:5000/upload_scan', formData);
   }
 }

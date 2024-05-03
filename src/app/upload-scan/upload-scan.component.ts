@@ -21,10 +21,13 @@ export class UploadScanComponent {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    this.fileUploadService.uploadScan(file).subscribe(response => {
-      console.log('File uploaded successfully', response);
-    }, error => {
-      console.error('Error uploading file', error);
+    this.fileUploadService.uploadScan(file).subscribe({
+      next: (response) => {
+        console.log('File uploaded successfully', response);
+      },
+      error: (error) => {
+        console.error('Error uploading file', error);
+      }
     });
   }
 
