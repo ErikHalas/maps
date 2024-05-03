@@ -8,6 +8,7 @@ import {RestServiceService} from "./rest-service.service";
 export class UserServiceService {
 
   user: Observable<User> = new Observable<User>();
+  isUserLoggedIn: boolean = false;
 
   constructor(
     private restService: RestServiceService
@@ -17,7 +18,12 @@ export class UserServiceService {
   login(username: string, password: string) {
     this.restService.loginUser(username, password).subscribe({
       next: (data: any) => {
-        this.user = data;
+        const user: User = { username: data.username, password: "password" };
+        this.user = new Observable<User>((observer) => {
+          observer.next(user);
+          observer.complete();
+        });
+        this.isUserLoggedIn = true;
       },
       error: error => {
         console.log('There was an error!', error);
@@ -28,7 +34,12 @@ export class UserServiceService {
   register(username: string, password: string, email?: string) {
     this.restService.registerUser({username, password, email}).subscribe({
       next: (data: any) => {
-        this.user = data;
+        const user: User = { username: data.username, password: "password" };
+        this.user = new Observable<User>((observer) => {
+          observer.next(user);
+          observer.complete();
+        });
+        this.isUserLoggedIn = true;
       },
       error: error => {
         console.log('There was an error!', error);
@@ -38,6 +49,7 @@ export class UserServiceService {
 
   logout() {
     this.user = new Observable<User>();
+    this.isUserLoggedIn = false;
   }
 }
 

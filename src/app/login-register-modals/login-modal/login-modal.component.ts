@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, UntypedFormGroup} from "@angular/forms";
 import {MatDialogRef} from "@angular/material/dialog";
+import {UserServiceService} from "../../services/user-service.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login-modal',
@@ -14,6 +16,8 @@ export class LoginModalComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<LoginModalComponent>,
     private fb: FormBuilder,
+    private userService: UserServiceService,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -34,6 +38,10 @@ export class LoginModalComponent implements OnInit{
   }
 
   onLoginClick(): void {
+    const username = this.loginForm.get('username')?.value;
+    const password = this.loginForm.get('password')?.value;
+    this.userService.login(username, password);
     this.dialogRef.close();
+    this.snackBar.open('Successfully logged in!', 'Close', {duration: 3000});
   }
 }

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {UserServiceService} from "../services/user-service.service";
-import {take, tap} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {RegisterModalComponent} from "../login-register-modals/register-modal/register-modal.component";
 import {LoginModalComponent} from "../login-register-modals/login-modal/login-modal.component";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-component',
@@ -16,17 +16,15 @@ export class LoginComponentComponent {
 
   constructor(
     private userService: UserServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
-    this.userService.user.pipe(
-      take(1),
-      tap(user => this.isUserLoggedIn = !!user)
-    )
+
   }
 
   openRegisterModal(): void {
     const dialogRef = this.dialog.open(RegisterModalComponent, {
-      width: '400px'
+      width: '20em'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -36,7 +34,7 @@ export class LoginComponentComponent {
 
   openLoginModal(): void {
     const dialogRef = this.dialog.open(LoginModalComponent, {
-      width: '400px'
+      width: '20em'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -44,16 +42,13 @@ export class LoginComponentComponent {
     });
   }
 
-  login() {
-    this.userService.login('usernametest', 'passwordtest');
-  }
-
-  register() {
-    this.userService.register('usernametest', 'passwordtest');
+  loggedIn(): boolean {
+    return this.userService.isUserLoggedIn;
   }
 
   logout() {
     this.userService.logout();
+    this.snackBar.open('Successfully logged out!', 'Close', {duration: 3000});
   }
 
 }

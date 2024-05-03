@@ -4,15 +4,15 @@
       <img src="./assets/placeholderUser.jpg" alt="Profile Picture" class="profile-picture">
     </a>
     <mat-menu #menu="matMenu">
-      <button *ngIf="!this.isUserLoggedIn" (click)="openLoginModal()" mat-menu-item>
+      <button *ngIf="!this.loggedIn()" (click)="openLoginModal()" mat-menu-item>
         <mat-icon>dialpad</mat-icon>
         <span>Login</span>
       </button>
-      <button *ngIf="!this.isUserLoggedIn" (click)="openRegisterModal()" mat-menu-item>
+      <button *ngIf="!this.loggedIn()" (click)="openRegisterModal()" mat-menu-item>
         <mat-icon>notifications_off</mat-icon>
         <span>Register</span>
       </button>
-      <button *ngIf="this.isUserLoggedIn" (click)="logout()" mat-menu-item>
+      <button *ngIf="this.loggedIn()" (click)="logout()" mat-menu-item>
         <mat-icon>voicemail</mat-icon>
         <span>Logout</span>
       </button>
