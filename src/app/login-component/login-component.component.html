@@ -5,15 +5,15 @@
     </a>
     <mat-menu #menu="matMenu">
       <button *ngIf="!this.loggedIn()" (click)="openLoginModal()" mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
+        <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
       <button *ngIf="!this.loggedIn()" (click)="openRegisterModal()" mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
+        <mat-icon>app_registration</mat-icon>
         <span>Register</span>
       </button>
       <button *ngIf="this.loggedIn()" (click)="logout()" mat-menu-item>
-        <mat-icon>voicemail</mat-icon>
+        <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>
     </mat-menu>
