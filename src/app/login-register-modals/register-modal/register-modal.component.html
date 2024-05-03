@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Register</h2>
+<div mat-dialog-content>
+  <form [formGroup]="this.registerForm">
+  <mat-form-field>
+    <input
+      formControlName="username"
+      matInput
+      required
+      minlength="4"
+      maxlength="30"
+      placeholder="Username">
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      formControlName="email"
+      matInput
+      minlength="10"
+      maxlength="40"
+      placeholder="Email">
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      formControlName="password"
+      matInput
+      required
+      minlength="4"
+      maxlength="30"
+      type="password" placeholder="Password">
+  </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="primary"
+    disabled="{{!registerForm.valid}}"
+    (click)="onRegisterClick()">Register
+  </button>
+  <button mat-button (click)="onCloseClick()">Cancel</button>
+</div>

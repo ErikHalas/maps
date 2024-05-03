@@ -14,6 +14,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
 import {UploadScanComponent} from "./upload-scan/upload-scan.component";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { RegisterModalComponent } from './login-register-modals/register-modal/register-modal.component';
+import { LoginModalComponent } from './login-register-modals/login-modal/login-modal.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -23,7 +30,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     LoginComponentComponent,
     WelcomePageComponent,
     GenericButtonComponent,
-    UploadScanComponent
+    UploadScanComponent,
+    RegisterModalComponent,
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,13 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatIconModule,
     HttpClientModule,
     MatMenuModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

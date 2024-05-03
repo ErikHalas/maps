@@ -4,11 +4,11 @@
       <img src="./assets/placeholderUser.jpg" alt="Profile Picture" class="profile-picture">
     </a>
     <mat-menu #menu="matMenu">
-      <button *ngIf="!this.isUserLoggedIn" (click)="login()" mat-menu-item>
+      <button *ngIf="!this.isUserLoggedIn" (click)="openLoginModal()" mat-menu-item>
         <mat-icon>dialpad</mat-icon>
         <span>Login</span>
       </button>
-      <button *ngIf="!this.isUserLoggedIn" (click)="register()" mat-menu-item>
+      <button *ngIf="!this.isUserLoggedIn" (click)="openRegisterModal()" mat-menu-item>
         <mat-icon>notifications_off</mat-icon>
         <span>Register</span>
       </button>
