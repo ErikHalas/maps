@@ -12,6 +12,8 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { GenericButtonComponent } from './generic-button/generic-button.component';
 import {HttpClientModule} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
+import {UploadScanComponent} from "./upload-scan/upload-scan.component";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {MatMenuModule} from "@angular/material/menu";
     LogoHeaderComponent,
     LoginComponentComponent,
     WelcomePageComponent,
-    GenericButtonComponent
+    GenericButtonComponent,
+    UploadScanComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {MatMenuModule} from "@angular/material/menu";
     BrowserAnimationsModule,
     MatIconModule,
     HttpClientModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
