@@ -44,6 +44,6 @@ export class RegisterModalComponent implements OnInit{
     const email = emailString.length == 0 ? undefined : emailString;
     this.userService.register(username, password, email);
     this.dialogRef.close();
-    this.snackBar.open('Successfully logged in!', 'Close', {duration: 3000});
+    this.snackBar.open('Successfully registered!', 'Close', {duration: 3000});
   }
 }

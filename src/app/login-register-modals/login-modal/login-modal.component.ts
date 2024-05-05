@@ -3,6 +3,7 @@ import {FormBuilder, UntypedFormGroup} from "@angular/forms";
 import {MatDialogRef} from "@angular/material/dialog";
 import {UserServiceService} from "../../services/user-service.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-login-modal',
@@ -40,8 +41,11 @@ export class LoginModalComponent implements OnInit{
   onLoginClick(): void {
     const username = this.loginForm.get('username')?.value;
     const password = this.loginForm.get('password')?.value;
-    this.userService.login(username, password);
-    this.dialogRef.close();
-    this.snackBar.open('Successfully logged in!', 'Close', {duration: 3000});
+    lastValueFrom(this.userService.login(username, password)).then(_ =>{
+      this.dialogRef.close();
+      this.snackBar.open('Successfully logged in!', 'Close', {duration: 3000});
+    }, error => {
+      this.snackBar.open('Login failed!', 'Close', {duration: 3000});
+    });
   }
 }

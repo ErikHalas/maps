@@ -9,4 +9,5 @@ export class GenericButtonComponent {
   constructor() { }
 
   @Input() text = '';
+  @Input() isDisabled = false;
 }

@@ -13,3 +13,9 @@ button {
   font-weight: bold;
   transition: background-color 0.3s;
 }
+
+.disabled {
+  background-color: #c4c4c4;
+  color: white;
+  cursor: not-allowed;
+}

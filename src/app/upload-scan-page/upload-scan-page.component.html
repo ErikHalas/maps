@@ -1,0 +1,22 @@
+<div class="main-page">
+  <div class="main-window">
+    <h1>Nahratie snímky (obe vo formáte DCOM)</h1>
+    <p style="font-weight: bold">
+      Tu nahrajte vašu snímku, Môžte nahrať najviac 1 súbor.
+    </p>
+    <app-upload-scan class="upload-button" [fileType]="FileTypesEnum.DCOM" (fileUploaded)="onFileUploaded($event)"></app-upload-scan>
+    <p style="font-weight: bold">
+      Tu nahrajte vašu masku k vášmu DCOM súboru, Môžte nahrať najviac 1 súbor.
+    </p>
+    <app-upload-scan class="upload-button" [fileType]="FileTypesEnum.MASK" (fileUploaded)="onFileUploaded($event)"></app-upload-scan>
+
+    <a *ngIf="!(dcomUploaded && maskUploaded)" style="text-decoration: none; padding-top: 2em">
+      <app-generic-button class="welcome-page-side upload-button"  [isDisabled]="true" text="Dokončiť nahrávanie" ></app-generic-button>
+    </a>
+    <a *ngIf="(dcomUploaded && maskUploaded)" (click)="finishUpload()" style="text-decoration: none; padding-top: 2em">
+      <app-generic-button class="welcome-page-side upload-button"  [isDisabled]="false" text="Dokončiť nahrávanie" ></app-generic-button>
+    </a>
+
+  </div>
+</div>
+
