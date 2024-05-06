@@ -2,13 +2,14 @@
   <div>
     <p class="header-main-page welcome-page-side">Stačí iba nahrať snímok a my Vám povieme Váš stav</p>
     <p class="sub-header-main-page welcome-page-side">Naša stránka slúži na predpoveď či váš snímok obsahuje náznaky nádoru obličiek</p>
-    <a [routerLink]="['/upload-scan']" style="text-decoration: none">
-      <app-generic-button class="welcome-page-side upload-button" text="Nahrať snímok" ></app-generic-button>
+    <a *ngIf="userService.isUserLoggedIn" [routerLink]="['/upload-scan']" style="text-decoration: none">
+      <app-generic-button class="welcome-page-side upload-button" text="Nahrať snímok"></app-generic-button>
+    </a>
+
+    <a *ngIf="!userService.isUserLoggedIn" style="text-decoration: none">
+      <app-generic-button class="welcome-page-side upload-button" [isDisabled]="true" text="Najprv sa prihláste"></app-generic-button>
     </a>
     <button (click)="testFunction()">Test click</button>
-  </div>
-  <div>
-    <img class="welcome-page-side" src="assets/brain-logo_preview_rev_1.png" sizes="" alt="banner">
   </div>
 </div>
 

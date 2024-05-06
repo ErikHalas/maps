@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {UserServiceService} from "../services/user-service.service";
 
 @Component({
   selector: 'app-welcome-page',
@@ -8,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class WelcomePageComponent implements OnInit {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public userService: UserServiceService) {}
 
   ngOnInit(): void {
     this.http.get('http://127.0.0.1:5000/').subscribe({

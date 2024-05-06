@@ -21,4 +21,8 @@ export class RestServiceService {
     return this.http.post('http://localhost:5000/user/login', user);
   }
 
+  finishUpload(payload: any) {
+    return this.http.post('http://localhost:5000/finish_upload', payload);
+  }
+
 }

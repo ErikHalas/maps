@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Subscription} from "rxjs";
 import {UploadScanService} from "./upload-scan.service";
+import {FileType} from "../enums";
+import {UserServiceService} from "../services/user-service.service";
 
 @Component({
   selector: 'app-upload-scan',
@@ -9,20 +11,25 @@ import {UploadScanService} from "./upload-scan.service";
 })
 export class UploadScanComponent {
 
-
+  @Output()
+  fileUploaded = new EventEmitter<FileUploadedEvent>();
   @Input()
   requiredFileType: string | undefined;
+  @Input()
+  fileType: FileType | undefined;
 
   fileName = '';
   uploadProgress: number | null | undefined;
   uploadSub: Subscription | null | undefined;
 
-  constructor(private fileUploadService: UploadScanService) { }
+  constructor(private fileUploadService: UploadScanService, public userService: UserServiceService) { }
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     this.fileUploadService.uploadScan(file).subscribe({
       next: (response) => {
+        this.fileUploaded.emit(new FileUploadedEvent(this.fileType, file));
+        this.fileName = file.name;
         console.log('File uploaded successfully', response);
       },
       error: (error) => {
@@ -39,5 +46,16 @@ export class UploadScanComponent {
   reset() {
     this.uploadProgress = null;
     this.uploadSub = null;
+  }
+}
+
+export class FileUploadedEvent {
+
+  fileType: FileType | undefined;
+  file: File | undefined;
+
+  constructor(fileType: FileType | undefined, file: File | undefined) {
+    this.fileType = fileType;
+    this.file = file;
   }
 }
