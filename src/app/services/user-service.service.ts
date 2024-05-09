@@ -41,15 +41,28 @@ export class UserServiceService {
     });
   }
 
-  register(username: string, password: string, email?: string) {
-    this.restService.registerUser({username, password, email}).subscribe({
-      next: (data: any) => {
-        this.user = {username: data.username, password: "password"};
-        this.isUserLoggedIn = true;
-      },
-      error: error => {
-        console.log('There was an error!', error);
-      }
+  register(username: string, password: string, email?: string): Observable<User> {
+    return new Observable<User>((observer) => {
+      const subscription: Subscription = this.restService.registerUser({username, password, email}).subscribe({
+        next: (data: any) => {
+          const user: User = {username: data.username, password: "password"};
+          this.user = user;
+          this.isUserLoggedIn = true;
+          observer.next(user);
+          observer.complete();
+        },
+        error: error => {
+          console.log('There was an error!', error);
+          observer.error(error);
+        }
+      });
+
+      // Unsubscribe logic, called when the subscription is unsubscribed
+      return {
+        unsubscribe() {
+          subscription.unsubscribe();
+        }
+      };
     });
   }
 

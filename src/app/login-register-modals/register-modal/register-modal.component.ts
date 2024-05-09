@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import {FormBuilder, UntypedFormGroup} from "@angular/forms";
 import {UserServiceService} from "../../services/user-service.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-register-modal',
@@ -42,12 +43,11 @@ export class RegisterModalComponent implements OnInit{
     const password = this.registerForm.get('password')?.value;
     const emailString = this.registerForm.get('email')?.value ? this.registerForm.get('email')?.value : '';
     const email = emailString.length == 0 ? undefined : emailString;
-    this.userService.register(username, password, email);
-    this.dialogRef.close();
-    if(this.userService.isUserLoggedIn){
-      this.snackBar.open('Successfully registered!', 'Close', {duration: 3000});
-    } else {
+    lastValueFrom(this.userService.register(username, password, email)).then(_ =>{
+      this.dialogRef.close();
+      this.snackBar.open('Successfully logged in!', 'Close', {duration: 3000});
+    }, error => {
       this.snackBar.open('User with this name or email already exists!', 'Close', {duration: 3000});
-    }
+    });
   }
 }
