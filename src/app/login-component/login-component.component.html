@@ -16,6 +16,11 @@
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>
+      <button *ngIf="this.loggedIn()" [routerLink]="'/result-table'" mat-menu-item>
+        <mat-icon>table-rows</mat-icon>
+        <span>Results</span>
+      </button>
+
     </mat-menu>
     <a>
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="notifications"></mat-icon>

@@ -1,0 +1,31 @@
+<div class="main-page">
+  <div class="main-window">
+    <h1>Vaše výsledky z predošlých vyšetrení</h1>
+    <mat-table [dataSource]="instances">
+      <ng-container matColumnDef="ctId">
+        <mat-header-cell *matHeaderCellDef>ID CT skenu</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{typedInstance(element).ctId}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="maskId">
+        <mat-header-cell *matHeaderCellDef>ID seg. masky</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{typedInstance(element).maskId}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="accuracy">
+        <mat-header-cell *matHeaderCellDef>Presnosť</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{typedInstance(element).accuracy?.toFixed(2)}} %</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="result">
+        <mat-header-cell *matHeaderCellDef>Výsledok</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{typedInstance(element).result ? 'Pozitívny' : 'Negatívny'}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </div>
+</div>
+

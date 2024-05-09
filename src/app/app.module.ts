@@ -23,7 +23,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { UploadScanPageComponent } from './upload-scan-page/upload-scan-page.component';
-import { ResultPageComponent } from './result-page/result-page.component';
+import { ResultTableComponent } from './result-table/result-table.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -37,23 +38,25 @@ import { ResultPageComponent } from './result-page/result-page.component';
     RegisterModalComponent,
     LoginModalComponent,
     UploadScanPageComponent,
+    ResultTableComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    HttpClientModule,
-    MatMenuModule,
-    MatProgressBarModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        HttpClientModule,
+        MatMenuModule,
+        MatProgressBarModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatTableModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

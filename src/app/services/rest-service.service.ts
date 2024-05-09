@@ -25,4 +25,8 @@ export class RestServiceService {
     return this.http.post('http://localhost:5000/finish_upload', payload);
   }
 
+  getInstances(username: string) {
+    return this.http.get('http://localhost:5000/get_instances/' + username);
+  }
+
 }
