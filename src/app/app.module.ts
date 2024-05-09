@@ -23,6 +23,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { UploadScanPageComponent } from './upload-scan-page/upload-scan-page.component';
+import { ResultPageComponent } from './result-page/result-page.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { UploadScanPageComponent } from './upload-scan-page/upload-scan-page.com
     UploadScanComponent,
     RegisterModalComponent,
     LoginModalComponent,
-    UploadScanPageComponent
+    UploadScanPageComponent,
   ],
   imports: [
     BrowserModule,

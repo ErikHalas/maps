@@ -4,6 +4,9 @@ import {FileUploadedEvent} from "../upload-scan/upload-scan.component";
 import {UserServiceService} from "../services/user-service.service";
 import {RestServiceService} from "../services/rest-service.service";
 import {Router} from "@angular/router";
+import {delay} from "rxjs";
+import {ResultPageService} from "../services/result-page.service";
+import {Results} from "../result-page/result-page.component";
 
 @Component({
   selector: 'app-upload-scan-page',
@@ -21,7 +24,7 @@ export class UploadScanPageComponent {
     FileUploadedEvent? // MASK
   ] = [undefined, undefined];
 
-  constructor(public userService: UserServiceService, public restService: RestServiceService, public router: Router) { }
+  constructor(public userService: UserServiceService, public restService: RestServiceService, public router: Router, public resultPageService: ResultPageService) { }
 
   onFileUploaded(fileType: FileUploadedEvent) {
     switch (fileType.fileType) {
@@ -47,7 +50,8 @@ export class UploadScanPageComponent {
     this.restService.finishUpload(payload).subscribe({
       next: (response) => {
         console.log('Upload finished successfully', response);
-        this.router.navigate(['/']);
+        this.resultPageService.setResults(response as Results);
+        this.router.navigate(['/result-page'] );
       }
     });
   }
