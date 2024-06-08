@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "./user-service.service";
+import {environment} from "../../environment";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class RestServiceService {
   constructor(private http: HttpClient) { }
 
   registerUser(user: User) {
-    return this.http.post('http://localhost:5000/user/register', user);
+    return this.http.post( environment.apiUrl + '/user/register', user);
   }
 
   loginUser(username: string, password: string) {
@@ -18,15 +19,15 @@ export class RestServiceService {
       username,
       password
     };
-    return this.http.post('http://localhost:5000/user/login', user);
+    return this.http.post(environment.apiUrl + '/user/login', user);
   }
 
   finishUpload(payload: any) {
-    return this.http.post('http://localhost:5000/finish_upload', payload);
+    return this.http.post(environment.apiUrl + '/finish_upload', payload);
   }
 
   getInstances(username: string) {
-    return this.http.get('http://localhost:5000/get_instances/' + username);
+    return this.http.get(environment.apiUrl + '/get_instances/' + username);
   }
 
 }

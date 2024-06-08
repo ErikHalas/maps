@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:20.14.0 as builder
+FROM --platform=$BUILDPLATFORM node:20.14.0-alpine AS builder
 
 RUN mkdir /project
 WORKDIR /project
@@ -9,6 +9,9 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+ARG BACKEND_URL
+RUN sed -i "s|http://localhost:5000|${BACKEND_URL}|g" src/environment.ts
+RUN sed -i "s|http://localhost:5000|${BACKEND_URL}|g" src/environment.prod.ts
 CMD ["ng", "serve", "--host", "0.0.0.0"]
 
 FROM builder as dev-envs
