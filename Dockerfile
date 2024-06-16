@@ -1,31 +1,19 @@
 FROM --platform=$BUILDPLATFORM node:20.14.0-alpine AS builder
 
-RUN mkdir /project
-WORKDIR /project
-
-RUN npm install -g @angular/cli@15
-
-COPY package.json package-lock.json ./
-RUN npm ci
-
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
 COPY . .
-ARG BACKEND_URL
-RUN sed -i "s|http://localhost:5000|${BACKEND_URL}|g" src/environment.ts
-RUN sed -i "s|http://localhost:5000|${BACKEND_URL}|g" src/environment.prod.ts
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+RUN npm run build --prod
 
-FROM builder as dev-envs
+FROM nginx:alpine
 
-RUN <<EOF
-apt-get update
-apt-get install -y --no-install-recommends git
-EOF
+RUN mkdir -p /usr/share/nginx/html
 
-RUN <<EOF
-useradd -s /bin/bash -m vscode
-groupadd docker
-usermod -aG docker vscode
-EOF
-COPY --from=gloursdocker/docker / /
+COPY --from=builder /app/dist/maps /usr/share/nginx/html
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
